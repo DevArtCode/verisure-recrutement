@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Verisure - Recrutement</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f6f6f6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #d71920;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    header img {
+      height: 40px;
+      margin-right: 15px;
+    }
+
+    header span {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    main {
+      flex: 1;
+      max-width: 500px;
+      margin: 60px auto;
+      padding: 30px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 18px;
+      width: 80%;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      border-color: #d71920;
+      outline: none;
+    }
+
+    #link {
+      margin-top: 25px;
+      font-size: 18px;
+      display: none;
+    }
+
+    #link a {
+      color: #d71920;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    #link a:hover {
+      text-decoration: underline;
+    }
+
+    .error {
+      color: #d71920;
+      font-weight: bold;
+    }
+
+    footer {
+      background-color: #d71920;
+      color: white;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 16px;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    footer a:hover {
+      text-decoration: none;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        margin: 30px 20px;
+      }
+
+      input {
+        width: 100%;
+      }
+
+      header {
+        flex-direction: column;
+      }
+
+      header img {
+        margin-bottom: 10px;
+        margin-right: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo-verisure.png" alt="Logo Verisure" />
+    <span>Verisure</span>
+  </header>
+
+  <main>
+    <h2>Entrez votre code postal pour participer à votre entretien</h2>
+    <input type="text" id="postalCode" placeholder="ex : 75000" maxlength="5" />
+    <div id="link"></div>
+  </main>
+
+  <footer>
+    Envie de rejoindre nos équipes ? <a href="https://careers.verisure.com/global/en" target="_blank">Consultez nos offres</a>
+  </footer>
+
+  <script>
+    const input = document.getElementById("postalCode");
+    const linkDiv = document.getElementById("link");
+
+    const specialCodes = {
+      "75000": "https://verisure.com/entretien/paris",
+      "69000": "https://verisure.com/entretien/lyon",
+      "13000": "https://verisure.com/entretien/marseille",
+      "31000": "https://verisure.com/entretien/toulouse",
+      "59000": "https://verisure.com/entretien/lille"
+    };
+
+    input.addEventListener("input", () => {
+      const code = input.value.trim();
+
+      if (/^\d{5}$/.test(code)) {
+        if (specialCodes.hasOwnProperty(code)) {
+          const url = specialCodes[code];
+          linkDiv.innerHTML = `<a href="${url}" target="_blank">Voir les infos pour le code postal ${code}</a>`;
+        } else {
+          linkDiv.innerHTML = `<span class="error">Code inconnu, veuillez indiquer le code de la ville la plus proche.</span>`;
+        }
+        linkDiv.style.display = "block";
+      } else {
+        linkDiv.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
