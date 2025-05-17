@@ -161,7 +161,7 @@
     if (/^\d{5}$/.test(code)) {
       if (specialCodes.hasOwnProperty(code)) {
         const url = specialCodes[code];
-        linkDiv.innerHTML = `<a href="${url}" target="_blank">Voir les infos pour le code postal ${code}</a>`;
+        linkDiv.innerHTML = `<a href="${url}" target="_blank">Cliquer ici pour planifier votre entretien</a>`;
       } else {
         linkDiv.innerHTML = `<span class="error">Code inconnu, veuillez indiquer le code de la ville la plus proche.</span>`;
       }
