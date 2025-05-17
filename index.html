@@ -144,32 +144,32 @@
   </footer>
 
   <script>
-    const input = document.getElementById("postalCode");
-    const linkDiv = document.getElementById("link");
+  const input = document.getElementById("postalCode");
+  const linkDiv = document.getElementById("link");
 
-    const specialCodes = {
-      "75000": "https://verisure.com/entretien/paris",
-      "69000": "https://verisure.com/entretien/lyon",
-      "13000": "https://verisure.com/entretien/marseille",
-      "31000": "https://verisure.com/entretien/toulouse",
-      "59000": "https://verisure.com/entretien/lille"
-    };
+  const specialCodes = {
+    "21121": "https://careers.verisure.com/fr/fr/events?category=Victorious%20Game&date=ALL_DATES&location=%20Fontaine%20les%20Dijon%2C%20Bourgogne-Franche-Comt%C3%A9%2C%20France",
+    "81000": "https://careers.verisure.com/fr/fr/events?location=Albi%2C%20Occitanie%2C%20France&date=ALL_DATES",
+    "61000": "https://careers.verisure.com/fr/fr/events?date=ALL_DATES&location=Alen%C3%A7on%2C%20Normandie%2C%20France",
+    "92100": "https://careers.verisure.com/fr/fr/events?date=ALL_DATES&location=Boulogne-Billancourt%2C%20%C3%8Ele-de-France%2C%20France",
+    "34500": "https://careers.verisure.com/fr/fr/events?date=ALL_DATES&location=B%C3%A9ziers%2C%20Occitanie%2C%20France"
+  };
 
-    input.addEventListener("input", () => {
-      const code = input.value.trim();
+  input.addEventListener("input", () => {
+    const code = input.value.trim();
 
-      if (/^\d{5}$/.test(code)) {
-        if (specialCodes.hasOwnProperty(code)) {
-          const url = specialCodes[code];
-          linkDiv.innerHTML = `<a href="${url}" target="_blank">Voir les infos pour le code postal ${code}</a>`;
-        } else {
-          linkDiv.innerHTML = `<span class="error">Code inconnu, veuillez indiquer le code de la ville la plus proche.</span>`;
-        }
-        linkDiv.style.display = "block";
+    if (/^\d{5}$/.test(code)) {
+      if (specialCodes.hasOwnProperty(code)) {
+        const url = specialCodes[code];
+        linkDiv.innerHTML = `<a href="${url}" target="_blank">Voir les infos pour le code postal ${code}</a>`;
       } else {
-        linkDiv.style.display = "none";
+        linkDiv.innerHTML = `<span class="error">Code inconnu, veuillez indiquer le code de la ville la plus proche.</span>`;
       }
-    });
-  </script>
+      linkDiv.style.display = "block";
+    } else {
+      linkDiv.style.display = "none";
+    }
+  });
+</script>
 </body>
 </html>
